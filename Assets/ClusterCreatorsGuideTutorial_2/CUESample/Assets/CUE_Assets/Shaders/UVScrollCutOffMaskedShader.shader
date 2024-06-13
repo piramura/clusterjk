@@ -1,0 +1,75 @@
+﻿Shader "CUE/UVScrollCutOffMaskedShader"
+{
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "white" {}
+        _MaskTex ("Mask Texture", 2D) = "white" {}
+        _XSpeed("Scroll Speed(X)", Range(-200.0, 200.0)) = 12.0
+        _YSpeed("Scroll Speed(Y)", Range(-200.0, 200.0)) = 6.0
+        _ColorTimes("Color Times", Range(0.0, 5.0)) = 1.0
+        _Threshold("Threshold", Range(0.0, 1.0)) = 0.5
+        [Enum(UnityEngine.Rendering.CullMode)]_CullMode("Cull Mode", Float) = 0
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        LOD 100
+        Cull [_CullMode]
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                UNITY_FOG_COORDS(1)
+                float4 vertex : SV_POSITION;
+            };
+
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+            sampler2D _MaskTex;
+            float4 _MaskTex_ST;
+            half _XSpeed;
+            half _YSpeed;
+            half _ColorTimes;
+            half _Threshold;
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                return o;
+            }
+
+            half4 frag (v2f i) : SV_Target
+            {
+                i.uv.x += _XSpeed * _Time;
+                i.uv.y += _YSpeed * _Time;
+
+                half4 maskCol = tex2D(_MaskTex, i.uv);
+                clip(maskCol.x-0.5);
+
+                half4 col = tex2D(_MainTex, i.uv);
+                clip(col.a-0.5);
+
+                col += col*_ColorTimes;
+
+                return col;
+            }
+            ENDCG
+        }
+    }
+}
