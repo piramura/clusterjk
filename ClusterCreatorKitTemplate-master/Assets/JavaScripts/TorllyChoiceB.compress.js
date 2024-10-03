@@ -1,0 +1,1 @@
+$.onInteract((o=>{$.audio("Audio1").play();const e=$.worldItemReference("TrollyQuizFlow");e?(e.send("playerVoted",{playerId:o.id,choice:"B"}),$.log(`Player ${o.userDisplayName} voted for B`)):$.log("No TrollyQuizFlow found."),$.log("pushed B by player: "+o.id)}));

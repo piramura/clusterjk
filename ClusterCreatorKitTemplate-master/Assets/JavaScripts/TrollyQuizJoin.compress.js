@@ -1,0 +1,1 @@
+$.onInteract((e=>{$.audio("Audio1").play();const o=$.worldItemReference("TrollyQuizFlow");o?(o.send("playerJoined",{playerId:e.id,userDisplayName:e.userDisplayName||"Unknown"}),$.log(`Player ${e.userDisplayName} joined the Trolley.`)):$.log("No TrollyQuizFlow found."),e.setPosition(Vector3(35.0099983,1.38,27.5499992))}));

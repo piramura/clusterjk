@@ -1,0 +1,1 @@
+$.onInteract((e=>{$.state.playerAnswers=$.state.playerAnswers||{},$.state.playerAnswers[e.id]="A";let s=$.getItemsNear($.getPosition(),5);for(let a of s)a.send("playerAnswered",{playerId:e.id,choice:"A"}),$.log(`Sent message: playerId=${e.id}, choice=A`);$.state.playerAnswers[playerId]=choice,$.log(`Player ${playerId} answer saved as ${choice}`)}));

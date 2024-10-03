@@ -1,0 +1,1 @@
+$.onStart((()=>{$.state.currentQuestionIndex=0,$.state.scores={},$.state.totalQuestions=5,$.state.totalPlayers=4,$.state.playerChoices={},$.state.currentQuestionIndex<$.state.totalQuestions?($.state.playerChoices={},$.sendSignalCompat("loadQuestion",$.state.currentQuestionIndex)):$.sendSignalCompat("quizEnded",$.state.scores)}));

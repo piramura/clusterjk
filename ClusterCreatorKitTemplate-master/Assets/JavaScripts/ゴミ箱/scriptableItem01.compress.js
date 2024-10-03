@@ -1,0 +1,1 @@
+const add=(d,o)=>d+o,log=d=>{$.log(d)},v=add(1,2);log(v);

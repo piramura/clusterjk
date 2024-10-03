@@ -1,0 +1,1 @@
+$.onUse(((e,t)=>{if(!e)return;let o=$.getItemsNear($.getPosition(),2);for(let e of o)e.send("loadQuestion",t)}));

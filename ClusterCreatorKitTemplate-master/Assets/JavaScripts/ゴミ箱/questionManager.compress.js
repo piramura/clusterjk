@@ -1,0 +1,1 @@
+$.onInteract((t=>{let s=$.state.questionIndex||0;$.setStateCompat("this","Question",e[s].question),$.setStateCompat("this","selectionA",e[s].choices[0]),$.setStateCompat("this","selectionB",e[s].choices[1]),$.log(`Question ${s+1} displayed.`),$.state.questionIndex=(s+1)%e.length}));

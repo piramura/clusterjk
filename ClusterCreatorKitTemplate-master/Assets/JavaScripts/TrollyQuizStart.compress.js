@@ -1,0 +1,1 @@
+$.onInteract((o=>{$.audio("Audio1").play();const e=$.worldItemReference("TrollyQuizFlow");e?e.send("startTrollyGame",0):$.log("No itemHandle found nearby."),$.log("PushStartButton")}));

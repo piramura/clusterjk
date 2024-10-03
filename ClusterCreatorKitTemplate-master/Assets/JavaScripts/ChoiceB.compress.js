@@ -1,0 +1,1 @@
+$.onInteract((e=>{$.audio("Audio1").play();const o=$.worldItemReference("QuizFlow");o?o.send("playerAnswered",{playerId:e.id,choice:"B"}):$.log("No itemHandle found nearby."),$.log("PushBBBBButton")}));

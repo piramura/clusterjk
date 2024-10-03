@@ -1,0 +1,1 @@
+$.onStart((()=>{$.state.players=$.state.players||[],$.state.scores=$.state.scores||{},$.state.playerNames=$.state.playerNames||{}})),$.onInteract((e=>{$.audio("Audio1").play();const a=$.worldItemReference("QuizFlow");a?(a.send("playerJoined",{playerId:e.id,userDisplayName:e.userDisplayName||"Unknown"}),$.log(`Sending playerJoined for ${e.id}`)):$.log("No QuizFlow found.")}));
